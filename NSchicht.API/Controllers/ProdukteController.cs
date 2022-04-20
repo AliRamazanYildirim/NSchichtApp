@@ -13,12 +13,22 @@ namespace NSchicht.API.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IDienst<Produkt> _dienst;
+        private readonly IProduktDienst _produktDienst;
 
-        public ProdukteController(IDienst<Produkt> dienst, IMapper mapper)
+        public ProdukteController(IDienst<Produkt> dienst, IMapper mapper, IProduktDienst produktDienst)
         {
             _dienst = dienst;
             _mapper = mapper;
+            _produktDienst = produktDienst;
         }
+        ////GET api/produkte/RufProdukteMitKategorie
+        [HttpGet("[action]")]
+        public async Task<IActionResult> RufProdukteMitKategorie()
+        {
+            return CreateActionResult(await _produktDienst.RufProdukteMitKategorie());
+        }
+
+
         //GET api/produkte
         [HttpGet]
         public async Task<IActionResult>Alle()
