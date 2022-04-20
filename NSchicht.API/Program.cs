@@ -1,5 +1,8 @@
 using Microsoft.EntityFrameworkCore;
+using NSchicht.Dienst.Dienste;
+using NSchicht.Dienst.Kartierungen;
 using NSchicht.Kern.ArbeitsEinheiten;
+using NSchicht.Kern.Dienste;
 using NSchicht.Kern.Quellen;
 using NSchicht.Quelle;
 using NSchicht.Quelle.ArbeitsEinheiten;
@@ -17,6 +20,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IArbeitsEinheit, ArbeitsEinheit>();
 builder.Services.AddScoped(typeof(IGenerischeQuelle<>), typeof(GenerischeQuelle<>));
+builder.Services.AddScoped(typeof(IDienst<>), typeof(Dienst<>));
+builder.Services.AddAutoMapper(typeof(KartierungsProfil));
 
 builder.Services.AddDbContext<AppDbKontext>(x =>
 {
