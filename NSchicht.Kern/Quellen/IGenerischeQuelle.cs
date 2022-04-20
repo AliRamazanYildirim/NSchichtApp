@@ -5,7 +5,7 @@ namespace NSchicht.Kern.Quellen
     public interface IGenerischeQuelle<T> where T : class
     {
         Task<T> GehZurIDAsync(int ID);
-        IQueryable<T> GehZurAlleDaten(Expression<Func<T, bool>> expression);
+        IQueryable<T> GehZurAlleDaten();
         IQueryable<T> Wo(Expression<Func<T, bool>> expression);
         Task<bool> IrgendeinAsync(Expression<Func<T, bool>> expression);
         Task InsertAsync(T einheit);

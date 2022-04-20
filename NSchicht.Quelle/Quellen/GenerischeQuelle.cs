@@ -35,7 +35,7 @@ namespace NSchicht.Quelle.Quellen
             _dbSet.RemoveRange(einheiten);
         }
 
-        public IQueryable<T> GehZurAlleDaten(Expression<Func<T, bool>> expression)//
+        public IQueryable<T> GehZurAlleDaten()//
         {
             return _dbSet.AsNoTracking().AsQueryable();
         }
