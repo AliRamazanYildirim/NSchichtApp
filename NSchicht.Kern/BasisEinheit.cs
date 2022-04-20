@@ -10,6 +10,6 @@ namespace NSchicht.Kern
     {
         public int ID { get; set; }
         public DateTime ErstellungsDatum { get; set; }
-        public DateTime NeuesDatum { get; set; }
+        public DateTime? NeuesDatum { get; set; }
     }
 }

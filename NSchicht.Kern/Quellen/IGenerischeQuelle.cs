@@ -10,8 +10,8 @@ namespace NSchicht.Kern.Quellen
         Task<bool> IrgendeinAsync(Expression<Func<T, bool>> expression);
         Task InsertAsync(T einheit);
         Task InsertFeldAsync(IEnumerable<T> einheiten);
-        void Aktualisieren();
-        void Entfernen();
+        void Aktualisieren(T einheit);
+        void Entfernen(T einheit);
         void EntfernenFeld(IEnumerable<T> einheiten);
 
 

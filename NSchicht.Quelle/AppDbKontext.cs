@@ -22,6 +22,24 @@ namespace NSchicht.Quelle
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+            modelBuilder.Entity<ProduktEigenschaft>().HasData(new ProduktEigenschaft()
+            {
+                ID=1,
+                Farbe="Schwarz",
+                Höhe=30,
+                Breite=21,
+                ProduktID=1
+            },
+            new ProduktEigenschaft()
+            {
+                ID = 2,
+                Farbe = "Grün",
+                Höhe = 30,
+                Breite = 21,
+                ProduktID = 2
+            });
+            
             base.OnModelCreating(modelBuilder);
         }
     }
