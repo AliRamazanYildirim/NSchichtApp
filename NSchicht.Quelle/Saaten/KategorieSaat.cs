@@ -15,7 +15,7 @@ namespace NSchicht.Quelle.Saaten
         {
             builder.HasData(new Kategorie { ID = 1, Name = "Bleistifte" },
                             new Kategorie { ID = 2, Name = "Bücher" },
-                            new Kategorie { ID = 2, Name = "Notizbücher" });
+                            new Kategorie { ID = 3, Name = "Notizbücher" });
         }
     }
 }
