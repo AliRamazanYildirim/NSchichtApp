@@ -3,6 +3,7 @@ using NSchicht.Kern;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,5 +18,11 @@ namespace NSchicht.Quelle
         public DbSet<Kategorie> Kategorien { get; set; }
         public DbSet<Produkt> Produkte { get; set; }
         public DbSet<ProduktEigenschaft> ProduktEigenschaften { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
