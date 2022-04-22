@@ -9,6 +9,6 @@ namespace NSchicht.Kern.Dienste
 {
     public interface IProduktDienst : IDienst<Produkt>
     {
-        Task<BenutzerDefinierteAntwortDüo<List<ProduktMitKategorieDüo>>> RufProdukteMitKategorie();
+        Task<List<ProduktMitKategorieDüo>> RufProdukteMitKategorie();
     }
 }
