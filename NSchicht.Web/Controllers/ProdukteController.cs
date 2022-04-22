@@ -27,8 +27,8 @@ namespace NSchicht.Web.Controllers
         }
         public async Task<IActionResult> Speichern()
         {
-            var kategorien =  _kategorieDienst.GehZurAlleDatenAsync();
-            var kategorienDüoe = _mapper.Map<List<KategorieDüo>>(kategorien);
+            var kategorien = await _kategorieDienst.GehZurAlleDatenAsync();
+            var kategorienDüoe = _mapper.Map<List<KategorieDüo>>(kategorien.ToList());
             ViewBag.kategorien = new SelectList(kategorienDüoe, "ID", "Name");
 
             return View();
@@ -43,8 +43,8 @@ namespace NSchicht.Web.Controllers
                 await _produktDienst.InsertAsync(_mapper.Map<Produkt>(produktDüo));
                 return RedirectToAction(nameof(Index));
             }
-            var kategorien = _kategorieDienst.GehZurAlleDatenAsync();
-            var kategorienDüoe = _mapper.Map<List<KategorieDüo>>(kategorien);
+            var kategorien = await _kategorieDienst.GehZurAlleDatenAsync();
+            var kategorienDüoe = _mapper.Map<List<KategorieDüo>>(kategorien.ToList());
             ViewBag.kategorien = new SelectList(kategorienDüoe, "ID", "Name");
             return View();
         }

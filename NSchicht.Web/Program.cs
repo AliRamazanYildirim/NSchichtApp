@@ -1,7 +1,9 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using NSchicht.Dienst.Kartierungen;
+using NSchicht.Dienst.Validierungen;
 using NSchicht.Quelle;
 using NSchicht.Web.Modules;
 using System.Reflection;
@@ -9,7 +11,8 @@ using System.Reflection;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews().AddFluentValidation(x =>
+x.RegisterValidatorsFromAssemblyContaining<ProduktDüoValidator>());
 builder.Services.AddAutoMapper(typeof(KartierungsProfil));
 builder.Services.AddDbContext<AppDbKontext>(x =>
 {
