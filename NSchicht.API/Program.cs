@@ -2,6 +2,7 @@ using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NSchicht.API.Filter;
+using NSchicht.API.Middleware;
 using NSchicht.Dienst.Dienste;
 using NSchicht.Dienst.Kartierungen;
 using NSchicht.Dienst.Validierungen;
@@ -59,6 +60,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCustomException();
 
 app.UseAuthorization();
 
