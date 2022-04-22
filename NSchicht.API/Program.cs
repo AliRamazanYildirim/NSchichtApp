@@ -1,8 +1,11 @@
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NSchicht.API.Filter;
 using NSchicht.API.Middleware;
+using NSchicht.API.Modules;
 using NSchicht.Dienst.Dienste;
 using NSchicht.Dienst.Kartierungen;
 using NSchicht.Dienst.Validierungen;
@@ -29,18 +32,11 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped(typeof(FilterNichtGefunden<>));
 
-builder.Services.AddScoped<IArbeitsEinheit, ArbeitsEinheit>();
-builder.Services.AddScoped(typeof(IGenerischeQuelle<>), typeof(GenerischeQuelle<>));
-builder.Services.AddScoped(typeof(IDienst<>), typeof(Dienst<>));
+builder.Services.AddScoped(typeof(FilterNichtGefunden<>));
 builder.Services.AddAutoMapper(typeof(KartierungsProfil));
 
-builder.Services.AddScoped<IProduktQuelle, ProduktQuelle>();
-builder.Services.AddScoped<IProduktDienst, ProduktDienst>();
 
-builder.Services.AddScoped<IKategorieQuelle, KategorieQuelle>();
-builder.Services.AddScoped<IKategorieDienst, KategorieDienst>();
 
 builder.Services.AddDbContext<AppDbKontext>(x =>
 {
@@ -50,6 +46,10 @@ builder.Services.AddDbContext<AppDbKontext>(x =>
      }
     );
 });
+
+builder.Host.UseServiceProviderFactory
+    (new AutofacServiceProviderFactory());
+builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder => containerBuilder.RegisterModule(new QuelleDienstModule()));
 
 var app = builder.Build();
 
