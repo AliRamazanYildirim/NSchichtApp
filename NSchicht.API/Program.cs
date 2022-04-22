@@ -49,7 +49,8 @@ builder.Services.AddDbContext<AppDbKontext>(x =>
 
 builder.Host.UseServiceProviderFactory
     (new AutofacServiceProviderFactory());
-builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder => containerBuilder.RegisterModule(new QuelleDienstModule()));
+builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
+containerBuilder.RegisterModule(new QuelleDienstModule()));
 
 var app = builder.Build();
 
