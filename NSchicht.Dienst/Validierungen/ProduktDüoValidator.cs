@@ -12,9 +12,9 @@ namespace NSchicht.Dienst.Validierungen
     {
         public ProduktDüoValidator()
         {
-            RuleFor(x => x.Name).NotNull().WithMessage("{PropertyName} is required").NotEmpty().WithMessage("{PropertyName} ist erforderlich");
+            RuleFor(x => x.Name).NotNull().WithMessage("{PropertyName} ist erforderlich").NotEmpty().WithMessage("{PropertyName} ist erforderlich");
             RuleFor(x => x.Preis).InclusiveBetween(1, int.MaxValue).WithMessage("{PropertyName} muss größer als 0 sein");
-            
+            RuleFor(x => x.Vorrat).InclusiveBetween(1, int.MaxValue).WithMessage("{PropertyName} muss größer als 0 sein");
 
         }
     }
