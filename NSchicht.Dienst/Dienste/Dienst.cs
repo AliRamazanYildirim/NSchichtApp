@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using NSchicht.Dienst.Ausnahmen;
 using NSchicht.Kern.ArbeitsEinheiten;
 using NSchicht.Kern.Dienste;
 using NSchicht.Kern.Quellen;
@@ -47,7 +48,12 @@ namespace NSchicht.Dienst.Dienste
 
         public async Task<T> GehZurIDAsync(int ID)
         {
-            return await _generischeQuelle.GehZurIDAsync(ID);
+            var hatProdukt= await _generischeQuelle.GehZurIDAsync(ID);
+            if(hatProdukt==null)
+            {
+                throw new AusnahmeNichtGefunden($"{typeof(T).Name}({ID}) wurde nicht gefunden");
+            }
+            return hatProdukt;
         }
 
         public async Task<T> InsertAsync(T einheit)

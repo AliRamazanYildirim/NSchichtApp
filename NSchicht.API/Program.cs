@@ -29,6 +29,7 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped(typeof(FilterNichtGefunden<>));
 
 builder.Services.AddScoped<IArbeitsEinheit, ArbeitsEinheit>();
 builder.Services.AddScoped(typeof(IGenerischeQuelle<>), typeof(GenerischeQuelle<>));

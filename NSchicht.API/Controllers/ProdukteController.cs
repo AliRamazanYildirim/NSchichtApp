@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using NSchicht.API.Filter;
 using NSchicht.Kern;
 using NSchicht.Kern.Dienste;
 using NSchicht.Kern.DÜOe;
@@ -35,6 +36,7 @@ namespace NSchicht.API.Controllers
             var produkteDüoe = _mapper.Map<List<ProduktDüo>>(produkte.ToList());
             return CreateActionResult(BenutzerDefinierteAntwortDüo<List<ProduktDüo>>.Erfolg(200, produkteDüoe));
         }
+        [ServiceFilter(typeof(FilterNichtGefunden<Produkt>))]
         //GET api/produkte/7
         [HttpGet("{ID}")]
         public async Task<IActionResult> GehZurID(int ID)
@@ -56,6 +58,7 @@ namespace NSchicht.API.Controllers
             await _produktDienst.AktualisierenAsync(_mapper.Map<Produkt>(produktDüo));
             return CreateActionResult(BenutzerDefinierteAntwortDüo<KeinInhaltDüo>.Erfolg(204));
         }
+        [ServiceFilter(typeof(FilterNichtGefunden<Produkt>))]
         [HttpDelete("{ID}")]
         public async Task<IActionResult> Entfernen(int ID)
         {

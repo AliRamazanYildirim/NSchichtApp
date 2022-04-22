@@ -8,7 +8,7 @@ namespace NSchicht.Dienst.Ausnahmen
 {
     public class AusnahmeNichtGefunden:Exception
     {
-        public AusnahmeNichtGefunden(string nachricht):base(nachricht)
+        public AusnahmeNichtGefunden(string nachricht) :base(nachricht)
         {
 
         }

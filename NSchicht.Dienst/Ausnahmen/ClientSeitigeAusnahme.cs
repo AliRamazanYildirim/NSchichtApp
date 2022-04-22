@@ -8,7 +8,7 @@ namespace NSchicht.Dienst.Ausnahmen
 {
     public class ClientSeitigeAusnahme:Exception
     {
-        public ClientSeitigeAusnahme(string nachticht) : base(nachticht)
+        public ClientSeitigeAusnahme(string nachricht) : base(nachricht)
         {
 
         }
