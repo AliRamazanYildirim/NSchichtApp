@@ -1,6 +1,8 @@
+using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using NSchicht.Dienst.Dienste;
 using NSchicht.Dienst.Kartierungen;
+using NSchicht.Dienst.Validierungen;
 using NSchicht.Kern.ArbeitsEinheiten;
 using NSchicht.Kern.Dienste;
 using NSchicht.Kern.Quellen;
@@ -13,7 +15,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<ProduktDüoValidator>());
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
