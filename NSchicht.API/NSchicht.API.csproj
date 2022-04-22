@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\NSchicht.Dienst\NSchicht.Dienst.csproj" />
+    <ProjectReference Include="..\NSchicht.Zwischenspeichern\NSchicht.Zwischenspeichern.csproj" />
   </ItemGroup>
 
 </Project>

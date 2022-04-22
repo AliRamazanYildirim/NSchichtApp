@@ -33,7 +33,9 @@ namespace NSchicht.Zwischenspeichern
 
             if(!_memoryCache.TryGetValue(ZwischenspeicherProduktSchlüssel, out _))
             {
+
                 _memoryCache.Set(ZwischenspeicherProduktSchlüssel, _produktQuelle.RufProdukteMitKategorie().Result);
+               
             }
         }
 
@@ -95,13 +97,16 @@ namespace NSchicht.Zwischenspeichern
             throw new NotImplementedException();
         }
 
-        public Task<BenutzerDefinierteAntwortDüo<List<ProduktMitKategorieDüo>>> RufProdukteMitKategorie()
+        public  Task<BenutzerDefinierteAntwortDüo<List<ProduktMitKategorieDüo>>> RufProdukteMitKategorie()
         {
             var produkte = _memoryCache.Get<IEnumerable<Produkt>>(ZwischenspeicherProduktSchlüssel);
+           
 
             var produkteMitKategorieDüo = _mapper.Map<List<ProduktMitKategorieDüo>>(produkte);
 
             return Task.FromResult(BenutzerDefinierteAntwortDüo<List<ProduktMitKategorieDüo>>.Erfolg(200, produkteMitKategorieDüo));
+            
+
         }
 
         public IQueryable<Produkt> Wo(Expression<Func<Produkt, bool>> expression)

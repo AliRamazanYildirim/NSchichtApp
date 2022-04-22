@@ -14,7 +14,7 @@ namespace NSchicht.API.Controllers
         private readonly IMapper _mapper;
         
         private readonly IProduktDienst _produktDienst;
-        public ProdukteController(IDienst<Produkt> dienst, IMapper mapper, IProduktDienst produktDienst)
+        public ProdukteController(IMapper mapper, IProduktDienst produktDienst)
         {
             
             _mapper = mapper;
