@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using NSchicht.Kern.Dienste;
 
 namespace NSchicht.API.Controllers
 {
-    
+
+
     public class KategorienController : BenutzerDefinierteBasisController
     {
         private readonly IKategorieDienst _kategorieDienst;

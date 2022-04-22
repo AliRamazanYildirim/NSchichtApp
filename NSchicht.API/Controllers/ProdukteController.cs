@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NSchicht.Kern;
 using NSchicht.Kern.Dienste;
@@ -7,7 +6,8 @@ using NSchicht.Kern.DÜOe;
 
 namespace NSchicht.API.Controllers
 {
-    
+
+
     public class ProdukteController : BenutzerDefinierteBasisController
     {
         private readonly IMapper _mapper;
