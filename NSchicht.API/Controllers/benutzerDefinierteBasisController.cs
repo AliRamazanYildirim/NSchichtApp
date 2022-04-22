@@ -4,7 +4,9 @@ using NSchicht.Kern.DÜOe;
 
 namespace NSchicht.API.Controllers
 {
-    
+    [Route("api/[controller]")]
+    [ApiController]
+
     public class BenutzerDefinierteBasisController : ControllerBase
     {
         [NonAction]

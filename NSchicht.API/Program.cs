@@ -23,6 +23,12 @@ builder.Services.AddScoped(typeof(IGenerischeQuelle<>), typeof(GenerischeQuelle<
 builder.Services.AddScoped(typeof(IDienst<>), typeof(Dienst<>));
 builder.Services.AddAutoMapper(typeof(KartierungsProfil));
 
+builder.Services.AddScoped<IProduktQuelle, ProduktQuelle>();
+builder.Services.AddScoped<IProduktDienst, ProduktDienst>();
+
+builder.Services.AddScoped<IKategorieQuelle, KategorieQuelle>();
+builder.Services.AddScoped<IKategorieDienst, KategorieDienst>();
+
 builder.Services.AddDbContext<AppDbKontext>(x =>
 {
     x.UseSqlServer(builder.Configuration.GetConnectionString("Sqlconnection"), option =>

@@ -16,8 +16,9 @@ namespace NSchicht.Quelle.Quellen
 
         public GenerischeQuelle(AppDbKontext kontext)
         {
-            _dbSet = _kontext.Set<T>();
             _kontext = kontext;
+            _dbSet = _kontext.Set<T>();
+            
         }
 
         public void Aktualisieren(T einheit)

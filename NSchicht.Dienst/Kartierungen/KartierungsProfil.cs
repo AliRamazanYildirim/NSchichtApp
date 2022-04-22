@@ -17,6 +17,8 @@ namespace NSchicht.Dienst.Kartierungen
             CreateMap<Kategorie, KategorieDüo>().ReverseMap();
             CreateMap<ProduktEigenschaft, ProduktEigenschaftDüo>().ReverseMap();
             CreateMap<ProduktAktualisierenDüo, Produkt>();
+            CreateMap<Produkt, ProduktMitKategorieDüo>();
+            CreateMap<Kategorie, KategorieMitProduktDüo>();
         }
     }
 }

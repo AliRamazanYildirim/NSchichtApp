@@ -57,53 +57,6 @@ namespace NSchicht.Dienst.Dienste
             return einheit;
         }
 
-        public Task<IEnumerable<T>> InsertFeldAsync(IEnumerable<T> einheiten)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> IrgendeinAsync(Expression<Func<T, bool>> expression)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IQueryable<T> Wo(Expression<Func<T, bool>> expression)
-        {
-            throw new NotImplementedException();
-        }
-    }
-}
-/*
- public async Task AktualisierenAsync(T einheit)
-        {
-            
-        }
-
-        public async Task EntfernenAsync(T einheit)
-        {
-           
-        }
-
-        public async Task EntfernenFeldAsync(IEnumerable<T> einheiten)
-        {
-            
-        }
-
-        public async Task<IEnumerable<T>> GehZurAlleDatenAsync()
-        {
-            
-        }
-
-        public async Task<T> GehZurIDAsync(int ID)
-        {
-            
-        }
-
-        public async Task<T> InsertAsync(T einheit)
-        {
-            
-        }
-
         public async Task<IEnumerable<T>> InsertFeldAsync(IEnumerable<T> einheiten)
         {
             await _generischeQuelle.InsertFeldAsync(einheiten);
@@ -120,4 +73,5 @@ namespace NSchicht.Dienst.Dienste
         {
             return _generischeQuelle.Wo(expression);
         }
- */
+    }
+}
