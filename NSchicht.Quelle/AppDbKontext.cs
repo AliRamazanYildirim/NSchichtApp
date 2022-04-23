@@ -19,6 +19,62 @@ namespace NSchicht.Quelle
         public DbSet<Produkt> Produkte { get; set; }
         public DbSet<ProduktEigenschaft> ProduktEigenschaften { get; set; }
 
+        public override int SaveChanges()
+        {
+            foreach (var item in ChangeTracker.Entries())
+            {
+                if (item.Entity is BasisEinheit entityReference)
+                {
+                    switch (item.Entity)
+                    {
+                        case EntityState.Added:
+                            {
+                                entityReference.ErstellungsDatum = DateTime.Now;
+                                break;
+                            }
+                        case EntityState.Modified:
+                            {
+                                entityReference.NeuesDatum = DateTime.Now;
+                                break;
+                            }
+
+
+                    }
+                }
+            }
+            return base.SaveChanges();
+        }
+
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        {
+            foreach (var item in ChangeTracker.Entries())
+            {
+                if (item.Entity is BasisEinheit einheitReferenz)
+                {
+                    switch (item.State)
+                    {
+                        case EntityState.Added:
+                            {
+                                einheitReferenz.ErstellungsDatum = DateTime.Now;
+                                break;
+                            }
+                        case EntityState.Modified:
+                            {
+                                Entry(einheitReferenz).Property(x => x.ErstellungsDatum).IsModified = false;
+
+                                einheitReferenz.NeuesDatum = DateTime.Now;
+                                break;
+                            }
+
+
+                    }
+                }
+
+
+            }
+            return base.SaveChangesAsync(cancellationToken);
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
