@@ -97,14 +97,14 @@ namespace NSchicht.Zwischenspeichern
             throw new NotImplementedException();
         }
 
-        public  Task<BenutzerDefinierteAntwortDüo<List<ProduktMitKategorieDüo>>> RufProdukteMitKategorie()
+        public  Task<List<ProduktMitKategorieDüo>> RufProdukteMitKategorie()
         {
             var produkte = _memoryCache.Get<IEnumerable<Produkt>>(ZwischenspeicherProduktSchlüssel);
            
 
             var produkteMitKategorieDüo = _mapper.Map<List<ProduktMitKategorieDüo>>(produkte);
 
-            return Task.FromResult(BenutzerDefinierteAntwortDüo<List<ProduktMitKategorieDüo>>.Erfolg(200, produkteMitKategorieDüo));
+            return Task.FromResult(produkteMitKategorieDüo);
             
 
         }
