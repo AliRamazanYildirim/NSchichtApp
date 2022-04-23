@@ -10,7 +10,7 @@ namespace NSchicht.Web.Dienste
         {
             _httpClient = httpClient;
         }
-        public async Task<List<KategorieDüo>> GehZurAlleDaten()
+        public async Task<List<KategorieDüo>> GehZurAlleDatenAsync()
         {
             var antwort = await _httpClient.GetFromJsonAsync<BenutzerDefinierteAntwortDüo<List<KategorieDüo>>>("kategorien");
             return antwort.Daten;

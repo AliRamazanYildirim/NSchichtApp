@@ -4,32 +4,30 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using NSchicht.Kern;
 using NSchicht.Kern.Dienste;
 using NSchicht.Kern.DÜOe;
+using NSchicht.Web.Dienste;
 
 namespace NSchicht.Web.Controllers
 {
     public class ProdukteController : Controller
     {
-        private readonly IProduktDienst _produktDienst;
-        private readonly IKategorieDienst _kategorieDienst;
-        private readonly IMapper _mapper;
-        public ProdukteController(IProduktDienst produktDienst, IKategorieDienst kategorieDienst, IMapper mapper)
-        {
-            _produktDienst = produktDienst;
-            _kategorieDienst = kategorieDienst;
-            _mapper = mapper;
-        }
+        private readonly ProduktApiDienst _produktApiDienst;
+        private readonly KategorieApiDienst _kategorieApiDienst;
 
+        public ProdukteController(KategorieApiDienst kategorieApiDienst, ProduktApiDienst produktApiDienst)
+        {
+            _kategorieApiDienst = kategorieApiDienst;
+            _produktApiDienst = produktApiDienst;
+        }
 
         public async Task<IActionResult> Index()
         {
             
-            return View((await _produktDienst.RufProdukteMitKategorie()).Daten);
+            return View((await _produktApiDienst.RufProdukteMitKategorie()));
         }
         public async Task<IActionResult> Speichern()
         {
-            var kategorien = await _kategorieDienst.GehZurAlleDatenAsync();
-            var kategorienDüoe = _mapper.Map<List<KategorieDüo>>(kategorien.ToList());
-            ViewBag.kategorien = new SelectList(kategorienDüoe, "ID", "Name");
+            var kategorienDüo = await _kategorieApiDienst.GehZurAlleDatenAsync();
+            ViewBag.kategorien = new SelectList(kategorienDüo, "ID", "Name");
 
             return View();
         }
@@ -40,23 +38,20 @@ namespace NSchicht.Web.Controllers
             if (ModelState.IsValid)
             {
 
-                await _produktDienst.InsertAsync(_mapper.Map<Produkt>(produktDüo));
+                await _produktApiDienst.SpeichernAsync(produktDüo);
                 return RedirectToAction(nameof(Index));
             }
-            var kategorien = await _kategorieDienst.GehZurAlleDatenAsync();
-            var kategorienDüo = _mapper.Map<List<KategorieDüo>>(kategorien.ToList());
-            ViewBag.kategorien = new SelectList(kategorienDüo, "ID", "Name");
-            return View();
+            await _produktApiDienst.SpeichernAsync(produktDüo);
+            return RedirectToAction(nameof(Index));
+            
         }
         [ServiceFilter(typeof(FilterNichtGefunden<Produkt>))]
         public async Task<IActionResult>Aktualisieren(int ID)
         {
-            var produkt = await _produktDienst.GehZurIDAsync(ID);
-
-            var kategorien = await _kategorieDienst.GehZurAlleDatenAsync();
-            var kategorienDüo = _mapper.Map<List<KategorieDüo>>(kategorien.ToList());
+            var produkt = await _produktApiDienst.GehZurIDAsync(ID);
+            var kategorienDüo = await _kategorieApiDienst.GehZurAlleDatenAsync();
             ViewBag.kategorien = new SelectList(kategorienDüo, "ID", "Name",produkt.KategorieID);
-            return View(_mapper.Map<ProduktDüo>(produkt));
+            return View(produkt);
 
         }
         [HttpPost]
@@ -66,18 +61,17 @@ namespace NSchicht.Web.Controllers
             if (ModelState.IsValid)
             {
 
-                await _produktDienst.AktualisierenAsync(_mapper.Map<Produkt>(produktDüo));
+                await _produktApiDienst.AktualisierenAsync(produktDüo);
                 return RedirectToAction(nameof(Index));
             }
-            var kategorien = await _kategorieDienst.GehZurAlleDatenAsync();
-            var kategorienDüo = _mapper.Map<List<KategorieDüo>>(kategorien.ToList());
+            var kategorienDüo = await _kategorieApiDienst.GehZurAlleDatenAsync();
             ViewBag.kategorien = new SelectList(kategorienDüo, "ID", "Name", produktDüo.KategorieID);
             return View(produktDüo);
         }
         public async Task<IActionResult> Entfernen(int ID)
         {
-            var produkt = await _produktDienst.GehZurIDAsync(ID);
-            await _produktDienst.EntfernenAsync(produkt);
+            
+            await _produktApiDienst.EntfernenAsync(ID);
             return RedirectToAction(nameof(Index));
         }
     }
