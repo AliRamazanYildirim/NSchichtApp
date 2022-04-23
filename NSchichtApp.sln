@@ -3,17 +3,22 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32414.318
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSchicht.Kern", "NSchicht.Kern\NSchicht.Kern.csproj", "{18CB522C-1F94-4C39-B041-9FE0B365475B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NSchicht.Kern", "NSchicht.Kern\NSchicht.Kern.csproj", "{18CB522C-1F94-4C39-B041-9FE0B365475B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSchicht.Quelle", "NSchicht.Quelle\NSchicht.Quelle.csproj", "{B52AECE6-3020-4EFC-B306-E8738BED1E87}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NSchicht.Quelle", "NSchicht.Quelle\NSchicht.Quelle.csproj", "{B52AECE6-3020-4EFC-B306-E8738BED1E87}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSchicht.Dienst", "NSchicht.Dienst\NSchicht.Dienst.csproj", "{727F40BD-402F-4786-9DA8-5803BB5462A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NSchicht.Dienst", "NSchicht.Dienst\NSchicht.Dienst.csproj", "{727F40BD-402F-4786-9DA8-5803BB5462A8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSchicht.API", "NSchicht.API\NSchicht.API.csproj", "{D200FFA9-FBB0-4A29-AA3F-30263E62F751}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSchicht.Web", "NSchicht.Web\NSchicht.Web.csproj", "{18DF09E1-E6CA-4838-8F1A-DC40A1BEC2A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NSchicht.Web", "NSchicht.Web\NSchicht.Web.csproj", "{18DF09E1-E6CA-4838-8F1A-DC40A1BEC2A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSchicht.Zwischenspeichern", "NSchicht.Zwischenspeichern\NSchicht.Zwischenspeichern.csproj", "{7FE75D62-0153-4397-8D40-96D23C96D780}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NSchicht.Zwischenspeichern", "NSchicht.Zwischenspeichern\NSchicht.Zwischenspeichern.csproj", "{7FE75D62-0153-4397-8D40-96D23C96D780}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{20137372-25CA-4E1A-899C-0A9CF5606936}"
+	ProjectSection(SolutionItems) = preProject
+		Haefen.txt = Haefen.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

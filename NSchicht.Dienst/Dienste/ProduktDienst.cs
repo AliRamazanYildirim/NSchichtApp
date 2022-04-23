@@ -27,7 +27,7 @@ namespace NSchicht.Dienst.Dienste
         {
             var produkte = await _produktQuelle.RufProdukteMitKategorie();
             var produkteDüo = _mapper.Map<List<ProduktMitKategorieDüo>>(produkte);
-            return BenutzerDefinierteAntwortDüo<List<ProduktMitKategorieDüo>>.Erfolg(200, produkteDüo);
+            return BenutzerDefinierteAntwortDüo<List<ProduktMitKategorieDüo>>.Erfolg(200,produkteDüo);
         }
     }
 }

@@ -7,10 +7,9 @@ using NSchicht.Kern.Quellen;
 using NSchicht.Quelle;
 using NSchicht.Quelle.ArbeitsEinheiten;
 using NSchicht.Quelle.Quellen;
-using NSchicht.Zwischenspeichern;
 using System.Reflection;
 using Module = Autofac.Module;
-namespace NSchicht.API.Modules
+namespace NSchicht.Web.Modules
 {
     public class QuelleDienstModule:Module
     {
@@ -34,7 +33,7 @@ namespace NSchicht.API.Modules
             builder.RegisterAssemblyTypes(apiAssembly, quelleAssembly, dienstAssembly).Where(x =>
             x.Name.EndsWith("Dienst")).AsImplementedInterfaces().InstancePerLifetimeScope();
 
-            //builder.RegisterType<ProduktDienstMitZwischenspeicher>().As<IProduktDienst>();
+            
 
         }
     }

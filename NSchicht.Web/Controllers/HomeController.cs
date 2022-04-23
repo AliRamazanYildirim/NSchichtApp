@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using NSchicht.Web.Models;
-using System.Diagnostics;
-
+using NSchicht.Kern.DÜOe;
 namespace NSchicht.Web.Controllers
 {
     public class HomeController : Controller
@@ -24,9 +22,9 @@ namespace NSchicht.Web.Controllers
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public IActionResult Error(ErrorViewModel errorViewModel)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View(errorViewModel);
         }
     }
 }
