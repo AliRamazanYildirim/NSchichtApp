@@ -48,7 +48,7 @@ namespace NSchicht.Web.Controllers
             ViewBag.kategorien = new SelectList(kategorienDüo, "ID", "Name");
             return View();
         }
-
+        [ServiceFilter(typeof(FilterNichtGefunden<Produkt>))]
         public async Task<IActionResult>Aktualisieren(int ID)
         {
             var produkt = await _produktDienst.GehZurIDAsync(ID);

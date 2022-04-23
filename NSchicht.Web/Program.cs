@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using NSchicht.Dienst.Kartierungen;
 using NSchicht.Dienst.Validierungen;
 using NSchicht.Quelle;
+using NSchicht.Web;
 using NSchicht.Web.Modules;
 using System.Reflection;
 
@@ -22,18 +23,18 @@ builder.Services.AddDbContext<AppDbKontext>(x =>
     }
     );
 });
-
+builder.Services.AddScoped(typeof(FilterNichtGefunden<>));
 builder.Host.UseServiceProviderFactory
     (new AutofacServiceProviderFactory());
 builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
 containerBuilder.RegisterModule(new QuelleDienstModule()));
 
 var app = builder.Build();
-
+app.UseExceptionHandler("/Home/Error");
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Error");
+    
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
