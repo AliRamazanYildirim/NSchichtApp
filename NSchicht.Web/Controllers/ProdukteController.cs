@@ -44,10 +44,41 @@ namespace NSchicht.Web.Controllers
                 return RedirectToAction(nameof(Index));
             }
             var kategorien = await _kategorieDienst.GehZurAlleDatenAsync();
-            var kategorienDüoe = _mapper.Map<List<KategorieDüo>>(kategorien.ToList());
-            ViewBag.kategorien = new SelectList(kategorienDüoe, "ID", "Name");
+            var kategorienDüo = _mapper.Map<List<KategorieDüo>>(kategorien.ToList());
+            ViewBag.kategorien = new SelectList(kategorienDüo, "ID", "Name");
             return View();
         }
 
+        public async Task<IActionResult>Aktualisieren(int ID)
+        {
+            var produkt = await _produktDienst.GehZurIDAsync(ID);
+
+            var kategorien = await _kategorieDienst.GehZurAlleDatenAsync();
+            var kategorienDüo = _mapper.Map<List<KategorieDüo>>(kategorien.ToList());
+            ViewBag.kategorien = new SelectList(kategorienDüo, "ID", "Name",produkt.KategorieID);
+            return View(_mapper.Map<ProduktDüo>(produkt));
+
+        }
+        [HttpPost]
+        public async Task<IActionResult> Aktualisieren(ProduktDüo produktDüo)
+
+        {
+            if (ModelState.IsValid)
+            {
+
+                await _produktDienst.AktualisierenAsync(_mapper.Map<Produkt>(produktDüo));
+                return RedirectToAction(nameof(Index));
+            }
+            var kategorien = await _kategorieDienst.GehZurAlleDatenAsync();
+            var kategorienDüo = _mapper.Map<List<KategorieDüo>>(kategorien.ToList());
+            ViewBag.kategorien = new SelectList(kategorienDüo, "ID", "Name", produktDüo.KategorieID);
+            return View(produktDüo);
+        }
+        public async Task<IActionResult> Entfernen(int ID)
+        {
+            var produkt = await _produktDienst.GehZurIDAsync(ID);
+            await _produktDienst.EntfernenAsync(produkt);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
