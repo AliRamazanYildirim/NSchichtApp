@@ -23,7 +23,7 @@ namespace NSchicht.Web.Controllers
         public async Task<IActionResult> Index()
         {
             
-            return View(await _produktDienst.RufProdukteMitKategorie());
+            return View((await _produktDienst.RufProdukteMitKategorie()).Daten);
         }
         public async Task<IActionResult> Speichern()
         {

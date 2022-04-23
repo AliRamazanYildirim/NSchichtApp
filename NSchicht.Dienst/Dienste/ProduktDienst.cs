@@ -23,11 +23,11 @@ namespace NSchicht.Dienst.Dienste
             _produktQuelle = produktQuelle;
         }
 
-        public async Task<List<ProduktMitKategorieDüo>> RufProdukteMitKategorie()
+        public async Task<BenutzerDefinierteAntwortDüo<List<ProduktMitKategorieDüo>>> RufProdukteMitKategorie()
         {
             var produkte = await _produktQuelle.RufProdukteMitKategorie();
             var produkteDüo = _mapper.Map<List<ProduktMitKategorieDüo>>(produkte);
-            return  produkteDüo;
+            return BenutzerDefinierteAntwortDüo<List<ProduktMitKategorieDüo>>.Erfolg(200,produkteDüo);
         }
     }
 }
