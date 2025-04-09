@@ -34,7 +34,7 @@ namespace NSchicht.API.Modules
             builder.RegisterAssemblyTypes(apiAssembly, quelleAssembly, dienstAssembly).Where(x =>
             x.Name.EndsWith("Dienst")).AsImplementedInterfaces().InstancePerLifetimeScope();
 
-            builder.RegisterType<ProduktDienstMitZwischenspeicher>().As<IProduktDienst>();
+            //builder.RegisterType<ProduktDienstMitZwischenspeicher>().As<IProduktDienst>();
 
         }
     }

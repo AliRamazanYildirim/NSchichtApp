@@ -4,6 +4,7 @@
     ViewData["Title"] = "Index";
 }
 @model List<ProduktMitKategorieDüo>
+<a class="btn btn-primary" asp-controller="Produkte" asp-action="Speichern">Speichern Produkt</a>
 <table class="table table-striped">
         <thead>
             <tr>
@@ -12,22 +13,22 @@
             <td>Preis</td>
             <td>Vorrat</td>
             <td>Kategorie</td>
-            <td>ErstellungsDatum</td>
-            <td>Actions</td>
+            <td>Erstellungsdatum</td>
+            <td>Aktionen</td>
             </tr>
         </thead>
        <tbody>
 
             @foreach (var item in Model)
             {
-                <tr>
+              <tr>
                <td>@item.ID</td>
                 <td>@item.Name</td>
                  <td>@item.Preis</td>
                   <td>@item.Vorrat</td>
                    <td>@item.Kategorie.Name</td>
                     <td>@item.ErstellungsDatum.Date</td>
-                    <td>
+                     <td>
                         <a class="btn btn-warning" asp-controller="Produkte" asp-action="Aktualisieren" asp-route-id="@item.ID">Aktualisieren</a>
                           <a class="btn btn-danger" asp-controller="Produkte" asp-action="Entfernen" asp-route-id="@item.ID">Entfernen</a>
                         </td>

@@ -6,6 +6,7 @@ using NSchicht.Dienst.Kartierungen;
 using NSchicht.Dienst.Validierungen;
 using NSchicht.Quelle;
 using NSchicht.Web;
+using NSchicht.Web.Dienste;
 using NSchicht.Web.Modules;
 using System.Reflection;
 
@@ -23,6 +24,20 @@ builder.Services.AddDbContext<AppDbKontext>(x =>
     }
     );
 });
+
+builder.Services.AddHttpClient<ProduktApiDienst>(option =>
+{
+
+    option.BaseAddress = new Uri(builder.Configuration["BasisUrl"]);
+
+});
+builder.Services.AddHttpClient<KategorieApiDienst>(option =>
+{
+
+    option.BaseAddress = new Uri(builder.Configuration["BasisUrl"]);
+
+});
+
 builder.Services.AddScoped(typeof(FilterNichtGefunden<>));
 builder.Host.UseServiceProviderFactory
     (new AutofacServiceProviderFactory());
